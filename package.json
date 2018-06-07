@@ -10,8 +10,11 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
+    "vuesax": "^3.0.51",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

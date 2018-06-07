@@ -1,0 +1,19 @@
+:root {
+    --inter-primary: #360023;
+    --inter-secondary: #ec6d64;
+    --inter-tertiary: #ef8277;
+    --inter-text-primary: #232323;
+    --inter-text-second: #454545;
+    --inter-clean-color: #fff;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
