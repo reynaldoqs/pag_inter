@@ -1,14 +1,18 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './routes/router'
-import store from './store/store'
-import Vuesax from 'vuesax'
+import Vue from 'vue';
+import Vuesax from 'vuesax';
+import axios from 'axios';
+import 'vuesax/dist/vuesax.css';
+import App from './App.vue';
+import router from './routes/router';
+import store from './store/store';
+import './assets/styles.css';
 
-/* Vue.http.headers.common['Access-Control-Allow-Origin'] = 'https://test.agetic.gob.bo/apigateway/login/auth'
-Vue.http.headers.common['Access-Control-Request-Method'] = '*' */
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+/* const token = localStorage.getItem('user-token');
+if (token) {
+  axios.defaults.headers.common['Authorization'] = token;
+} */
 
-import 'vuesax/dist/vuesax.css'
-import './assets/styles.css'
 Vue.use(Vuesax, {
   theme: {
     colors: {
@@ -16,15 +20,15 @@ Vue.use(Vuesax, {
       success: 'rgb(23, 201, 100)',
       danger: 'rgb(242, 19, 93)',
       warning: 'rgb(255, 130, 0)',
-      dark: 'rgb(36, 33, 69)'
-    }
-  }
-})
+      dark: 'rgb(36, 33, 69)',
+    },
+  },
+});
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h(App),
+}).$mount('#app');

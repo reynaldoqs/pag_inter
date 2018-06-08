@@ -1,22 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import {
-  sLogin
-} from '../services/loginService'
-export const LOGIN = "LOGIN";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGOUT = "LOGOUT";
-/* import axios from 'axios'
+  sLogin,
+} from '../services/loginService';
 import {
-  url
-} from '../config/config'
- */
-Vue.use(Vuex)
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from '../config/config';
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     isLoggedIn: !!localStorage.getItem('user'),
-    pending: true
+    pending: true,
   },
   mutations: {
     [LOGIN](state) {
@@ -28,29 +26,34 @@ export default new Vuex.Store({
     },
     [LOGOUT](state) {
       state.isLoggedIn = false;
-    }
+    },
 
   },
   actions: {
     login({
-      commit
+      commit,
     }, creds) {
-      return sLogin(commit, creds)
+      commit(LOGIN);
+      sLogin(commit, creds);
     },
     logout({
-      commit
+      commit,
     }) {
-      localStorage.removeItem("user");
-      commit(LOGOUT);
-    }
+      return new Promise((resolve) => {
+        commit(LOGOUT);
+        localStorage.removeItem('user');
+        resolve();
+      });
+
+    },
 
   },
   getters: {
     isLoggedIn: state => {
-      return state.isLoggedIn
+      return state.isLoggedIn;
     },
     isPending: state => {
-      return state.pending
-    }
-  }
-})
+      return state.pending;
+    },
+  },
+});

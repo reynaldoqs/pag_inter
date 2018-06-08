@@ -1,11 +1,11 @@
 <template>
     <div class="home">
         <NavComponent/>
-        this is home
+        <router-view/>
     </div>
 </template>
 <script>
-import NavComponent from "../../components/NavComponent";
+import NavComponent from "../../../components/NavComponent";
 export default {
   components: {
     NavComponent

@@ -1,46 +1,25 @@
+import axios from 'axios';
 import {
-    BASE_URL,
-    LOGIN,
-    LOGIN_SUCCESS
-} from '../config/config'
-import axios from 'axios'
+  BASE_URL,
+  LOGIN_SUCCESS,
+} from '../config/config';
+
+
+export const sLogin = (commit, creds) => {
+  return new Promise((resolve, reject) => {
+    axios.post(BASE_URL, creds)
+      .then((data) => {
+        localStorage.setItem('user', JSON.stringify(data.data));
+        commit(LOGIN_SUCCESS);
+        console.log('after push user');
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+}
 
 export const loginService = {
-    sLogin
-}
-export function sLogin(commit, creds) {
-    /*     console.log(BASE_URL, creds);
-        commit(LOGIN);
-        commit(LOGIN_SUCCESS);
-        return new Promise(resolve => {
-            setTimeout(() => {
-                localStorage.setItem('user', 'JWT');
-                resolve()
-            }, 5000)
-        }) */
-    /*     commit(LOGIN);
-        console.log(creds)
-        return axios.post('https://test.agetic.gob.bo/apigateway/login/auth', creds, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }) */
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(creds)
-    };
-    fetch('http://test.agetic.gob.bo/apigateway/login/auth', requestOptions)
-        .then(response => {
-            console.log(response);
-            return response.json();
-        })
-        .then(data => {
-            console.log(data)
-        }).catch(err => {
-            console.log(err)
-        });
-
-}
+  sLogin,
+};

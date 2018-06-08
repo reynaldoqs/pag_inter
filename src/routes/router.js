@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home/Home'
-import LoginPage from '../views/LoginPage/LoginPage'
-import DashBoard from '../views/DashBoard/DashBoard'
+import Home from '../views/UnProtected/Home/Home'
+import LoginPage from '../views/UnProtected/LoginPage/LoginPage'
+import DashBoard from '../views/Protected/DashBoard/DashBoard'
+/* children routes */
+import Catalogo from '../views/UnProtected/Catalogo/Catalogo.vue'
 
 Vue.use(Router)
 
@@ -10,7 +12,12 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      children: [{
+        path: "catalogo",
+        name: "catalogo",
+        component: Catalogo
+      }]
     },
     {
       path: '/login',
@@ -19,7 +26,7 @@ export default new Router({
     },
     {
       path: '/dashboard',
-      name: 'dasboard',
+      name: 'dashboard',
       component: DashBoard
     }
   ]

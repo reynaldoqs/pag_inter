@@ -4,12 +4,7 @@
   </div>
 </template>
 <script>
-import NavComponent from "./components/NavComponent";
-export default {
-  components: {
-    NavComponent
-  }
-};
+export default {};
 </script>
 
 <style>
